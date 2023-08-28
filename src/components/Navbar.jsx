@@ -5,20 +5,21 @@ import { Link } from "react-router-dom";
 import { styles } from "../styles";
 import { navLinks } from "../constants";
 import { third, menu, close } from "../assets";
-// import { Squash as Hamburger } from "hamburger-react";
-import { Button } from "@/components/ui/button";
-import { AlignRight } from "lucide-react";
+import Hamburger from "hamburger-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
 const Navbar = () => {
   const [active, setActive] = useState("");
+  // const FancyButton = React.forwardRef((props, forwardedRef) => (
+  //   <Hamburger size={24} rounded {...props} ref={forwardedRef} />
+  // ));
+
+  // FancyButton.displayName = "FancyButton";
   return (
     <nav
       className={`${styles.paddingX} w-full flex items-center py-5 fixed top-0 z-20 bg-primary`}
@@ -55,16 +56,12 @@ const Navbar = () => {
             </li>
           ))}
         </ul>
-        <div className="md:hidden">
+        <div>
           <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button size="icon" variant="ghost">
-                <AlignRight />
-              </Button>
+            <DropdownMenuTrigger>
+              <Hamburger size={24} rounded />
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-              <DropdownMenuLabel>Nav Links</DropdownMenuLabel>
-              <DropdownMenuSeparator />
               {navLinks.map((link) => (
                 <DropdownMenuItem key={link.id}>
                   <a href={`#${link.id}`}>{link.title}</a>
