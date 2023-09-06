@@ -1,28 +1,25 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { styles } from "../styles";
 import { navLinks } from "../constants";
-import { third, menu, close } from "../assets";
-import Hamburger from "hamburger-react";
+import { third } from "../assets";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { AlignRight } from "lucide-react";
 
 const Navbar = () => {
   const [active, setActive] = useState("");
-  // const FancyButton = React.forwardRef((props, forwardedRef) => (
-  //   <Hamburger size={24} rounded {...props} ref={forwardedRef} />
-  // ));
 
-  // FancyButton.displayName = "FancyButton";
   return (
     <nav
-      className={`${styles.paddingX} w-full flex items-center py-5 fixed top-0 z-20 bg-primary`}
+      className={`${styles.paddingX} w-full flex items-center py-5 fixed top-0 z-20 bg-scroll`}
     >
       <div className="w-full flex justify-between items-center max-w-7xl mx-auto">
         <Link
@@ -56,10 +53,12 @@ const Navbar = () => {
             </li>
           ))}
         </ul>
-        <div>
+        <div className="md:hidden">
           <DropdownMenu>
-            <DropdownMenuTrigger>
-              <Hamburger size={24} rounded />
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" size="icon">
+                <AlignRight />
+              </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
               {navLinks.map((link) => (
